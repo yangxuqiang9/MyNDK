@@ -1,11 +1,9 @@
 package com.example.a328789.mysdk.SDK.LocationInfo;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.ContactsContract;
-import android.telephony.TelephonyManager;
 
 import java.util.ArrayList;
 
