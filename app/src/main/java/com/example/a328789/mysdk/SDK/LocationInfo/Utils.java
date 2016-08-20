@@ -37,4 +37,10 @@ public class Utils {
 
         return list;
     }
+    /**
+     * 获取本地相册照片
+     */
+    public void getLocatPhoto(){
+
+    }
 }
