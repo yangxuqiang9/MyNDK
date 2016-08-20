@@ -19,5 +19,6 @@ public class ScreenUtils {
     public int px2dp(Context context,int px){
         float scale = context.getResources().getDisplayMetrics().density;
         return (int)(px/scale+0.5f);
+
     }
 }
