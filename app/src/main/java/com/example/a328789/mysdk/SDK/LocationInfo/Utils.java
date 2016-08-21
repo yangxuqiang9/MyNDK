@@ -1,7 +1,6 @@
 package com.example.a328789.mysdk.SDK.LocationInfo;
 
 import android.app.Activity;
-import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,8 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,12 +55,21 @@ public class Utils {
         activity.startActivityForResult(intent,requestCode);
     }
     /**
-     *
+     *打开手机摄像头获取图片
      */
+    public void openCamera(Activity activity,int requestCode){
+        String externalStorageState = Environment.getExternalStorageState();
+        if(externalStorageState.equals(Environment.MEDIA_MOUNTED)){
+            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+            activity.startActivityForResult(intent,requestCode);
+        }else {
+            Toast.makeText(activity.getApplicationContext(),"sd卡没有插入",Toast.LENGTH_SHORT).show();
+        }
+    }
     /**
      * 在onActivityResult中获取图片的uri
      */
-    public Bitmap getImageUri(Context context,Intent data){
+    public Bitmap getImageBitmap(Context context,Intent data){
         Uri photoUri = data.getData();
         Bitmap bitmap=null;
         Bitmap bp=null;
