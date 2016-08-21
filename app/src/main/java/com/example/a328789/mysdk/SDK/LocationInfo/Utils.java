@@ -13,6 +13,7 @@ import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -65,6 +66,26 @@ public class Utils {
         }else {
             Toast.makeText(activity.getApplicationContext(),"sd卡没有插入",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    /**
+     * 打开手机摄像头获取图片并保存到临时路径
+     * @param activity
+     * @param uriPath
+     * @param requestCode
+     */
+    public void openVamera(Activity activity,String uriPath,int requestCode){
+        //设置一个临时路径，保存所拍的照片
+        String TEMP_IMAGE_PATH;
+        //获取该路径
+        TEMP_IMAGE_PATH= Environment.getExternalStorageDirectory().getPath()+"/"+uriPath+".png";
+        //传入ACTION_IMAGE_CAPTURE:该action指向一个照相机app
+        Intent intent1=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //创建File并获取它的URI值
+        Uri photoUri=Uri.fromFile(new File(TEMP_IMAGE_PATH));
+        //MediaStore.EXTRA_OUTPUT为字符串"output"，即将该键值对放进intent中
+        intent1.putExtra(MediaStore.EXTRA_OUTPUT,photoUri);
+        activity.startActivityForResult(intent1,requestCode);
     }
     /**
      * 在onActivityResult中获取图片的uri
