@@ -116,13 +116,19 @@ public class Utils {
                 e.printStackTrace();
             }
         }
-
         return bitmap;
+
     }
     /**
      * 获取本地相册照片
      */
     public void getLocatPhoto(){
+
+    }
+    /**
+     * 根据照片存放路径,获取图片并进行压缩
+     */
+    public void processImage(String path){
 
     }
 }
